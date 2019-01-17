@@ -1,17 +1,19 @@
-var colors = generateRandomColors(6);
-
+var numSquares = 6;
+var colors = generateRandomColors(numSquares);
 var squares = document.querySelectorAll(".square");
 var pickedColor = pickColor();
 var colorDisplay = document.getElementById('colorDisplay');
 var messageDisplay = document.getElementById('message');
 var h1 = document.querySelector("h1");
 var resetButton = document.querySelector("#reset");
+var easyButton = document.getElementById('easy');
+var hardButton = document.getElementById('hard');
 
 colorDisplay.textContent = pickedColor;
 
 resetButton.addEventListener('click', function(){
   // generate new colors
-  colors = generateRandomColors(6);
+  colors = generateRandomColors(numSquares);
   // pick a new random colors from array
   pickedColor = pickColor();
   // change colorDisplay to match pickedColors
@@ -20,7 +22,7 @@ resetButton.addEventListener('click', function(){
   for (var i = 0; i < squares.length; i++) {
     squares[i].style.backgroundColor = colors[i];
   }
-  h1.style.backgroundColor = '#232323';
+  h1.style.backgroundColor = 'steelblue';
 });
 
 for (var i = 0; i < squares.length; i++) {
@@ -78,4 +80,33 @@ function randomColor(){
   var b = Math.floor(Math.random() * 256);
   return "rgb(" + r + ", " + g + ", " + b + ")";
 };
+
+easyButton.addEventListener('click', function() {
+  hardButton.classList.remove("selected");
+  easyButton.classList.add("selected");
+  numSquares = 3;
+  colors = generateRandomColors(numSquares);
+  pickedColor = pickColor();
+  colorDisplay.textContent = pickedColor;
+  for (var i = 0; i < squares.length; i++){
+    if (colors[i]){
+      squares[i].style.backgroundColor = colors[i];
+    } else {
+      squares[i].style.display = "none";
+    }
+  }
+});
+
+hardButton.addEventListener('click', function() {
+  hardButton.classList.add("selected");
+  easyButton.classList.remove("selected");
+  numSquares = 6;
+  colors = generateRandomColors(numSquares);
+  pickedColor = pickColor();
+  colorDisplay.textContent = pickedColor;
+  for (var i = 0; i < squares.length; i++){
+    squares[i].style.display = "block";
+    squares[i].style.backgroundColor = colors[i];
+  }
+});
 
