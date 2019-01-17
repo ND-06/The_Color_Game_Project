@@ -38,6 +38,7 @@ h1 {
   background-color: white;
   height: 30px;
   text-align: center;
+  color: black;
 }
 
 .selected {
@@ -61,6 +62,7 @@ button {
   transition: all 0.5s; /*transition property takes 2 arguments : 1) what we want to make 2) the delay in seconds;*/
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
+  outline: none;
 }
 
 button:hover {
